@@ -9,6 +9,8 @@ const diceImgEl = document.querySelector('.dice');
 const newBtnEl = document.querySelector('.btn--new');
 const rollBtnEl = document.querySelector('.btn--roll');
 const holdBtnEl = document.querySelector('.btn--hold');
+const player0El = document.querySelector('.player--0');
+const player1El = document.querySelector('.player--1');
 
 //starting defaults
 score0El.textContent = 0;
