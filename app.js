@@ -5,12 +5,13 @@ const score0El = document.getElementById('score--0');
 const score1El = document.querySelector('#score--1');
 const current0El = document.getElementById('current--0');
 const current1El = document.getElementById('current--1');
+const player0El = document.querySelector('.player--0');
+const player1El = document.querySelector('.player--1');
+const playerEl = document.querySelectorAll('.player')
 const diceImgEl = document.querySelector('.dice');
 const newBtnEl = document.querySelector('.btn--new');
 const rollBtnEl = document.querySelector('.btn--roll');
 const holdBtnEl = document.querySelector('.btn--hold');
-const player0El = document.querySelector('.player--0');
-const player1El = document.querySelector('.player--1');
 
 //starting defaults
 score0El.textContent = 0;
@@ -37,5 +38,30 @@ rollBtnEl.addEventListener('click', function () {
         current0El.innerText = currentScore; //Change later
     } else {
         //switch to the next player
+
+        if (dice === 1 && (player0El.classList.contains('player--active') || player1El.contains('player--active'))){
+            playerEl.forEach(player => {
+                if (player.classList.contains('player--active')) {
+                    player.classList.remove('player--active')
+                } else {
+                    player.classList.add('player--active')
+                }
+            })
+        }
+
+        // for (let i = 0; i < playerEl.clientHeight; i++){
+        //     if (playerEl[i].classList.contains('player--active')) {
+        //         playerEl[i].classList.remove('player--active')
+        //     } else {
+        //         playerEl[i].classList.add('player--active')
+        //     }
+        // }
+        // playerEl.forEach(player => {
+        //     if (player.classList.contains('player--active')) {
+        //         player.classList.remove('player--active')
+        //     } else {
+        //         player.classList.add('player--active')
+        //     }
+        // })
     }
 })
