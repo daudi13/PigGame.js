@@ -18,9 +18,9 @@ score0El.textContent = 0;
 score1El.textContent = 0;
 diceImgEl.classList.add('hidden');
 
-
+const scores = [0, 0];
 let currentScore = 0;
-
+let activePlayer = 0;
 // rolling dice functionality
 rollBtnEl.addEventListener('click', function () {
     //1. Generation of a random dice roll
@@ -35,33 +35,22 @@ rollBtnEl.addEventListener('click', function () {
     if (dice !== 1) {
         //add dice score to the current score 
         currentScore += dice;
-        current0El.innerText = currentScore; //Change later
+        document.getElementById(`current--${activePlayer}`).textContent = currentScore;
     } else {
         //switch to the next player
 
-        if (dice === 1 && (player0El.classList.contains('player--active') || player1El.contains('player--active'))){
+        if (dice === 1 && (player0El.classList.contains('player--active') || player1El.classList.contains('player--active'))){
             playerEl.forEach(player => {
                 if (player.classList.contains('player--active')) {
                     player.classList.remove('player--active')
                 } else {
-                    player.classList.add('player--active')
+                    activePlayer = activePlayer === 0 ? 1: 0
+                    player.classList.add('player--active');
+                    currentScore += dice;
+                    document.getElementById(`current--${activePlayer}`).textContent = currentScore;
                 }
             })
         }
 
-        // for (let i = 0; i < playerEl.clientHeight; i++){
-        //     if (playerEl[i].classList.contains('player--active')) {
-        //         playerEl[i].classList.remove('player--active')
-        //     } else {
-        //         playerEl[i].classList.add('player--active')
-        //     }
-        // }
-        // playerEl.forEach(player => {
-        //     if (player.classList.contains('player--active')) {
-        //         player.classList.remove('player--active')
-        //     } else {
-        //         player.classList.add('player--active')
-        //     }
-        // })
     }
 })
